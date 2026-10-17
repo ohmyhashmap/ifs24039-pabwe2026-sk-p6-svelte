@@ -1,0 +1,190 @@
+════════════════════════════════════════════════════════════════
+        LAPORAN LENGKAP ANALISIS SONARQUBE
+════════════════════════════════════════════════════════════════
+Project Key : ifs24039-pabwe2026-sk-p6-svelte
+Waktu       : 17/10/2026, 15.31.16
+
+────────────────────────────────────────────────────────────────
+  1. QUALITY GATE STATUS
+────────────────────────────────────────────────────────────────
+Status: OK
+
+────────────────────────────────────────────────────────────────
+  2. METRICS / MEASURES
+────────────────────────────────────────────────────────────────
+  • Security Rating                 : A
+  • Security Review Rating          : A
+  • Vulnerabilities                 : 0
+  • Security Hotspots               : 0
+  • Reliability Rating              : A
+  • Bugs                            : 0
+  • Maintainability Rating          : A
+  • Code Smells                     : 4
+  • Technical Debt                  : 8
+  • Debt Ratio                      : 0.2
+  • Coverage                        : 100.0
+  • Line Coverage                   : 100.0
+  • Branch Coverage                 : 100.0
+  • Lines to Cover                  : 116
+  • Uncovered Lines                 : 0
+  • Duplications Density            : 0.0
+  • Duplicated Lines                : 0
+  • Duplicated Blocks               : 0
+  • Lines of Code                   : 173
+  • Lines                           : 210
+  • Functions                       : 62
+  • Classes                         : 0
+  • Statements                      : 122
+  • Files                           : 10
+  • Complexity                      : 79
+  • Cognitive Complexity            : 18
+  • Violations                      : 4
+  • Quality Gate                    : OK
+
+────────────────────────────────────────────────────────────────
+  3. SECURITY HOTSPOTS
+────────────────────────────────────────────────────────────────
+  ✅ Tidak ada security hotspot.
+
+────────────────────────────────────────────────────────────────
+  4. ISSUES DETAIL (Total: 4)
+────────────────────────────────────────────────────────────────
+1. [MINOR] CODE_SMELL — javascript:S7764
+   File   : src/router.js:3
+   Pesan  : Prefer `globalThis` over `window`.
+   Effort : 2min
+   Kode   :
+        1: <span class="k">import</span> <span class="sym-1 sym">{</span> <span class="sym-2 sym">writable</span> <span class="sym-1 sym">}</span> from <span class="s">"svelte/store"</span>;
+        2: 
+    >>> 3: <span class="k">export</span> <span class="k">const</span> <span class="sym-3 sym">currentPath</span> = <span class="sym-2 sym">writable</span>(window.location.pathname);
+        4: 
+        5: <span class="k">export</span> <span class="k">function</span> <span class="sym-4 sym">navigate</span>(<span class="sym-5 sym">path</span>, <span class="sym-6 sym">{</span> <span class="sym-7 sym">replace</span> = false <span class="sym-6 sym">}</span> = <span class="sym-8 sym">{</span><span class="sym-8 sym">}</span>) <span class="sym-9 sym">{</span>
+
+2. [MINOR] CODE_SMELL — javascript:S7764
+   File   : src/router.js:6
+   Pesan  : Prefer `globalThis` over `window`.
+   Effort : 2min
+   Kode   :
+        4: 
+        5: <span class="k">export</span> <span class="k">function</span> <span class="sym-4 sym">navigate</span>(<span class="sym-5 sym">path</span>, <span class="sym-6 sym">{</span> <span class="sym-7 sym">replace</span> = false <span class="sym-6 sym">}</span> = <span class="sym-8 sym">{</span><span class="sym-8 sym">}</span>) <span class="sym-9 sym">{</span>
+    >>> 6:   window.history[<span class="sym-7 sym">replace</span> ? <span class="s">"replaceState"</span> : <span class="s">"pushState"</span>](<span class="sym-10 sym">{</span><span class="sym-10 sym">}</span>, <span class="s">""</span>, <span class="sym-5 sym">path</span>);
+        7:   <span class="sym-3 sym">currentPath</span>.set(<span class="sym-5 sym">path</span>);
+        8: <span class="sym-9 sym">}</span>
+
+3. [MINOR] CODE_SMELL — javascript:S7764
+   File   : src/router.js:10
+   Pesan  : Prefer `globalThis` over `window`.
+   Effort : 2min
+   Kode   :
+        8: <span class="sym-9 sym">}</span>
+        9: 
+    >>> 10: window.addEventListener(<span class="s">"popstate"</span>, () =&gt; <span class="sym-3 sym">currentPath</span>.set(window.location.pathname));
+        11: 
+        12: <span class="k">export</span> <span class="k">function</span> <span class="sym-11 sym">resolveRoute</span>(<span class="sym-12 sym">path</span>) <span class="sym-13 sym">{</span>
+
+4. [MINOR] CODE_SMELL — javascript:S7764
+   File   : src/router.js:10
+   Pesan  : Prefer `globalThis` over `window`.
+   Effort : 2min
+   Kode   :
+        8: <span class="sym-9 sym">}</span>
+        9: 
+    >>> 10: window.addEventListener(<span class="s">"popstate"</span>, () =&gt; <span class="sym-3 sym">currentPath</span>.set(window.location.pathname));
+        11: 
+        12: <span class="k">export</span> <span class="k">function</span> <span class="sym-11 sym">resolveRoute</span>(<span class="sym-12 sym">path</span>) <span class="sym-13 sym">{</span>
+
+────────────────────────────────────────────────────────────────
+  5. COVERAGE DETAIL PER FILE
+────────────────────────────────────────────────────────────────
+  (Diurutkan dari coverage paling rendah)
+
+────────────────────────────────────────────────────────────────
+📄 src/helpers/apiHelper.js
+   Coverage         : 100.0%
+   Line Coverage    : 100.0%
+   Branch Coverage  : 100.0%
+   Lines to Cover   : 17
+   Uncovered Lines  : 0
+   ✅ Memenuhi standar
+
+────────────────────────────────────────────────────────────────
+📄 src/features/auth/api/authApi.js
+   Coverage         : 100.0%
+   Line Coverage    : 100.0%
+   Lines to Cover   : 3
+   Uncovered Lines  : 0
+   ✅ Memenuhi standar
+
+────────────────────────────────────────────────────────────────
+📄 src/features/auth/states/authStore.js
+   Coverage         : 100.0%
+   Line Coverage    : 100.0%
+   Branch Coverage  : 100.0%
+   Lines to Cover   : 21
+   Uncovered Lines  : 0
+   ✅ Memenuhi standar
+
+────────────────────────────────────────────────────────────────
+📄 src/features/linktrees/api/linkTreeApi.js
+   Coverage         : 100.0%
+   Line Coverage    : 100.0%
+   Lines to Cover   : 14
+   Uncovered Lines  : 0
+   ✅ Memenuhi standar
+
+────────────────────────────────────────────────────────────────
+📄 src/features/linktrees/states/linkTreesStore.js
+   Coverage         : 100.0%
+   Line Coverage    : 100.0%
+   Branch Coverage  : 100.0%
+   Lines to Cover   : 28
+   Uncovered Lines  : 0
+   ✅ Memenuhi standar
+
+────────────────────────────────────────────────────────────────
+📄 src/router.js
+   Coverage         : 100.0%
+   Line Coverage    : 100.0%
+   Branch Coverage  : 100.0%
+   Lines to Cover   : 13
+   Uncovered Lines  : 0
+   ✅ Memenuhi standar
+
+────────────────────────────────────────────────────────────────
+📄 src/helpers/toolsHelper.js
+   Coverage         : 100.0%
+   Line Coverage    : 100.0%
+   Branch Coverage  : 100.0%
+   Lines to Cover   : 8
+   Uncovered Lines  : 0
+   ✅ Memenuhi standar
+
+────────────────────────────────────────────────────────────────
+📄 src/hooks/useInput.js
+   Coverage         : 100.0%
+   Line Coverage    : 100.0%
+   Branch Coverage  : 100.0%
+   Lines to Cover   : 3
+   Uncovered Lines  : 0
+   ✅ Memenuhi standar
+
+────────────────────────────────────────────────────────────────
+📄 src/features/users/api/userApi.js
+   Coverage         : 100.0%
+   Line Coverage    : 100.0%
+   Lines to Cover   : 9
+   Uncovered Lines  : 0
+   ✅ Memenuhi standar
+
+════════════════════════════════════════════════════════════════
+  RINGKASAN
+════════════════════════════════════════════════════════════════
+Total file ada kode : 9
+Coverage 0%         : 0
+Coverage 1-79%      : 0
+Coverage ≥80%       : 9
+
+Total issues        : 4
+Total hotspots      : 0
+Quality Gate        : OK
+════════════════════════════════════════════════════════════════
