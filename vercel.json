@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/delcom-api/:path*",
+      "destination": "https://open-api.delcom.org/api/v1/:path*"
+    },
+    { "source": "/((?!delcom-api/).*)", "destination": "/index.html" }
+  ]
+}
