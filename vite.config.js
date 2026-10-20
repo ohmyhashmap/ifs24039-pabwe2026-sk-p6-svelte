@@ -7,10 +7,11 @@ import process from "process";
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const baseUrl = env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1";
+  const port = Number(process.env.PORT || env.APP_PORT) || 3004;
   return {
     plugins: [svelte({ prebundleSvelteLibraries: false }), tailwindcss(), svelteTesting()],
-    server: { port: Number(env.APP_PORT) || 3004 },
-    preview: { port: Number(env.APP_PORT) || 3004 },
+    server: { port },
+    preview: { host: "0.0.0.0", port },
     build: { chunkSizeWarningLimit: 1500 },
     define: {
       // URL absolut Delcom (untuk aset/gambar)
