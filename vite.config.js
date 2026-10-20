@@ -8,10 +8,17 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const baseUrl = env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1";
   const port = Number(process.env.PORT || env.APP_PORT) || 3004;
+  const delcomProxy = {
+    "/delcom-api": {
+      target: baseUrl,
+      changeOrigin: true,
+      rewrite: (path) => path.replace(/^\/delcom-api/, ""),
+    },
+  };
   return {
     plugins: [svelte({ prebundleSvelteLibraries: false }), tailwindcss(), svelteTesting()],
     server: { port },
-    preview: { host: "0.0.0.0", port },
+    preview: { host: "0.0.0.0", port, proxy: delcomProxy },
     build: { chunkSizeWarningLimit: 1500 },
     define: {
       // URL absolut Delcom (untuk aset/gambar)
