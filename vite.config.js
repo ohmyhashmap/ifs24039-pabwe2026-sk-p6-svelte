@@ -8,24 +8,16 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), "");
   const baseUrl = env.VITE_DELCOM_BASEURL || "https://open-api.delcom.org/api/v1";
   const port = Number(process.env.PORT || env.APP_PORT) || 3004;
-  const delcomProxy = {
-    "/delcom-api": {
-      target: baseUrl,
-      changeOrigin: true,
-      rewrite: (path) => path.replace(/^\/delcom-api/, ""),
-    },
-  };
   return {
     plugins: [svelte({ prebundleSvelteLibraries: false }), tailwindcss(), svelteTesting()],
     server: { port },
-    preview: { host: "0.0.0.0", port, proxy: delcomProxy },
+    preview: { host: "0.0.0.0", port },
     build: { chunkSizeWarningLimit: 1500 },
     define: {
       // URL absolut Delcom (untuk aset/gambar)
       DELCOM_BASEURL: JSON.stringify(baseUrl),
-      // URL untuk request API: di production lewat proxy same-origin (/delcom-api, lihat vercel.json)
-      // sehingga tidak ada request preflight CORS.
-      DELCOM_API_URL: JSON.stringify(mode === "production" ? "/delcom-api" : baseUrl),
+      // API Delcom mengizinkan CORS sehingga dapat diakses langsung dari semua environment.
+      DELCOM_API_URL: JSON.stringify(baseUrl),
     },
     test: {
       globals: true,
